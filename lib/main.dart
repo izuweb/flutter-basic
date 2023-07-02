@@ -3,28 +3,31 @@ import 'package:flutter/material.dart';
 void main(){
   runApp( const MaterialApp(home: MyApp()));
 }
-class MyApp extends StatelessWidget{
+class MyApp extends StatefulWidget{
   const MyApp({super.key});
-
   
   @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: 
-        AppBar(title:const Text('Biuti')),
-      body: const Center(
-        child: Text('Some text'),
-
-      ),  
-
-    );
+  State<MyApp> createState() {
+   return _MyAppState();
   }
 }
-// Scaffold(
-//       appBar:
-//         AppBar(title: const Text('Biuti'),),
-//       body: const Center(
-//         child:  Text('Some Text'),
-//       ),
-//     ),
+class _MyAppState extends State<MyApp>{
+  bool isButtonPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: 
+        GestureDetector(
+          onTap: () => setState(() {
+            isButtonPressed = !isButtonPressed;
+          }),
+          child: Container(color: isButtonPressed?Colors.red:Colors.blue,),
+        )
+    );
+  }
+
+}
+
+  
+  
